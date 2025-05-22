@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdGuardTech - Servicios Informáticos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .service-card {
+            transition: all 0.3s ease;
+            border: 1px solid #e5e7eb;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.2);
+            border-color: #3b82f6;
+        }
+        .price-tag {
+            position: absolute;
+            right: 15px;
+            top: -15px;
+            background: #3b82f6;
+            color: white;
+            border-radius: 8px;
+            padding: 6px 12px;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            font-size: 1.1rem;
+            z-index: 10;
+        }
+        .floating-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 50;
+            animation: pulse 2s infinite;
+        }
+        .floating-home {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            z-index: 50;
+        }
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+        .service-image {
+            height: 180px;
+            object-fit: cover;
+            width: 100%;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: #1e40af;
+            min-width: 200px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 0 0 8px 8px;
+        }
+        .dropdown-menu a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s;
+        }
+        .dropdown-menu a:hover {
+            background-color: 1e3a8a;
+        }
+        .mobile-menu {
+            display: none;
+        }
+        .mobile-menu.active {
+            display: flex;
+        }
+        .logo-link {
+            cursor: pointer;
+        }
+        .mobile-nav-item {
+            padding: 12px 16px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-4 shadow-lg sticky top-0 z-40">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <div class="logo-link" onclick="scrollToTop()">
+                    <h1 class="text-2xl md:text-3xl font-bold">AdGuardTech</h1>
+                    <p class="text-blue-200 text-sm">Soluciones informáticas profesionales</p>
+                </div>
+                <div class="hidden md:flex space-x-6 items-center">
+                    <div class="dropdown relative">
+                        <button class="hover:text-blue-200 transition flex items-center">
+                            Servicios <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </button>
+                        <div class="dropdown-menu mt-4">
+                            <a href="#servicios">Todos los servicios</a>
+                            <a href="#precios">Lista de precios</a>
+                        </div>
+                    </div>
+                    <a href="#contacto" class="hover:text-blue-200 transition">Contacto</a>
+                    <a href="https://wa.me/5356639178" target="_blank" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full inline-flex items-center transition text-sm">
+                        <i class="fab fa-whatsapp mr-2"></i> Reservar
+                    </a>
+                </div>
+                <!-- Menú móvil simplificado -->
+                <div class="md:hidden flex space-x-4 items-center">
+                    <a href="#servicios" class="text-white hover:text-blue-200"><i class="fas fa-laptop-code"></i></a>
+                    <a href="#precios" class="text-white hover:text-blue-200"><i class="fas fa-tags"></i></a>
+                    <a href="#contacto" class="text-white hover:text-blue-200"><i class="fas fa-envelope"></i></a>
+                    <a href="https://wa.me/5356639178" target="_blank" class="text-white hover:text-green-300"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-b from-blue-50 to-white py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-blue-800 mb-4">Servicios Informáticos Profesionales</h2>
+            <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-8">
+                Soluciones técnicas especializadas para tus dispositivos. Trabajo independiente con resultados garantizados.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#servicios" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full inline-flex items-center transition">
+                    <i class="fas fa-laptop-code mr-2"></i> Ver Servicios
+                </a>
+                <a href="#precios" class="bg-white hover:bg-gray-100 text-blue-600 font-bold py-3 px-6 rounded-full inline-flex items-center transition border border-blue-200">
+                    <i class="fas fa-tags mr-2"></i> Ver Precios
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicios" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-blue-800 mb-4">Nuestros Servicios</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Soluciones técnicas especializadas para dispositivos móviles y computadoras</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-white rounded-lg overflow-hidden relative service-card">
+                    <img src="https://images.unsplash.com/photo-1614064548237-096f735f344f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Desbloqueo FRP Google" class="service-image">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-unlock text-blue-600 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800">Desbloqueo FRP Google</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">Eliminación de protección de fábrica (FRP) en dispositivos Android con cuentas Google.</p>
+                        <a href="#precios" class="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center transition">
+                            Ver precio <i class="fas fa-arrow-right ml-1 text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="bg-white rounded-lg overflow-hidden relative service-card">
+                    <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1526&q=80" alt="Instalación Windows en Mac" class="service-image">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <i class="fab fa-windows text-blue-600 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800">Instalación Windows en Mac</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">Instalación profesional de sistema operativo Windows en equipos Apple Mac.</p>
+                        <a href="#precios" class="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center transition">
+                            Ver precio <i class="fas fa-arrow-right ml-1 text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="bg-white rounded-lg overflow-hidden relative service-card">
+                    <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=765&q=80" alt="Reinstalación Windows" class="service-image">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-redo text-blue-600 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800">Reinstalación Windows</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">Reinstalación limpia del sistema operativo Windows con todos los drivers necesarios.</p>
+                        <a href="#precios" class="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center transition">
+                            Ver precio <i class="fas fa-arrow-right ml-1 text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#precios" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full inline-flex items-center transition">
+                    <i class="fas fa-tags mr-2"></i> Ver todos los precios
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prices Section -->
+    <section id="precios" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-blue-800 mb-4">Lista de Precios</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Precios claros y competitivos para todos nuestros servicios</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-white rounded-lg overflow-hidden relative service-card">
+                    <div class="price-tag">1,000 CUP</div>
+                    <img src="https://images.unsplash.com/photo-1614064548237-096f735f344f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Desbloqueo FRP Google" class="service-image">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-unlock text-blue-600 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800">Desbloqueo FRP Google</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">Eliminación de protección de fábrica (FRP) en dispositivos Android con cuentas Google.</p>
+                        <a href="https://wa.me/5356639178?text=Hola,%20quiero%20reservar%20el%20servicio%20de%20Desbloqueo%20FRP%20Google%20(1000%20CUP)" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full inline-flex items-center transition w-full justify-center">
+                            <i class="fab fa-whatsapp mr-2"></i> Reservar
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="bg-white rounded-lg overflow-hidden relative service-card">
+                    <div class="price-tag">1,500 CUP</div>
+                    <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1526&q=80" alt="Instalación Windows en Mac" class="service-image">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <i class="fab fa-windows text-blue-600 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800">Instalación Windows en Mac</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">Instalación profesional de sistema operativo Windows en equipos Apple Mac.</p>
+                        <a href="https://wa.me/5356639178?text=Hola,%20quiero%20reservar%20el%20servicio%20de%20Instalación%20Windows%20en%20Mac%20(1500%20CUP)" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full inline-flex items-center transition w-full justify-center">
+                            <i class="fab fa-whatsapp mr-2"></i> Reservar
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="bg-white rounded-lg overflow-hidden relative service-card">
+                    <div class="price-tag">1,000 CUP</div>
+                    <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=765&q=80" alt="Reinstalación Windows" class="service-image">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-redo text-blue-600 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800">Reinstalación Windows</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">Reinstalación limpia del sistema operativo Windows con todos los drivers necesarios.</p>
+                        <a href="https://wa.me/5356639178?text=Hola,%20quiero%20reservar%20el%20servicio%20de%20Reinstalación%20Windows%20(1000%20CUP)" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full inline-flex items-center transition w-full justify-center">
+                            <i class="fab fa-whatsapp mr-2"></i> Reservar
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="bg-white rounded-lg overflow-hidden relative service-card">
+                    <div class="price-tag">500 CUP</div>
+                    <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80" alt="Desbloqueo Windows modo S" class="service-image">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-lock-open text-blue-600 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800">Desbloqueo Windows modo S</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">Desbloqueo del modo seguro (S Mode) en Windows para instalar aplicaciones no certificadas.</p>
+                        <a href="https://wa.me/5356639178?text=Hola,%20quiero%20reservar%20el%20servicio%20de%20Desbloqueo%20Windows%20modo%20S%20(500%20CUP)" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full inline-flex items-center transition w-full justify-center">
+                            <i class="fab fa-whatsapp mr-2"></i> Reservar
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="bg-white rounded-lg overflow-hidden relative service-card">
+                    <div class="price-tag">200 CUP</div>
+                    <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Eliminación contraseña PC" class="service-image">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-key text-blue-600 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800">Eliminación contraseña PC</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">Remoción de contraseñas de usuario en computadoras con Windows.</p>
+                        <a href="https://wa.me/5356639178?text=Hola,%20quiero%20reservar%20el%20servicio%20de%20Eliminación%20contraseña%20PC%20(200%20CUP)" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full inline-flex items-center transition w-full justify-center">
+                            <i class="fab fa-whatsapp mr-2"></i> Reservar
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="bg-white rounded-lg overflow-hidden relative service-card">
+                    <div class="price-tag">500-1,000 CUP</div>
+                    <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80" alt="Eliminación contraseña Android" class="service-image">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-mobile-alt text-blue-600 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800">Eliminación contraseña Android</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">500 CUP sin cuenta Google, 1000 CUP con cuenta Google asociada.</p>
+                        <a href="https://wa.me/5356639178?text=Hola,%20quiero%20reservar%20el%20servicio%20de%20Eliminación%20contraseña%20Android" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full inline-flex items-center transition w-full justify-center">
+                            <i class="fab fa-whatsapp mr-2"></i> Reservar
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <p class="text-gray-600 italic">* Precios sujetos a cambio según complejidad del trabajo</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacto" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-blue-800 mb-12">Contacto</h2>
+            
+            <div class="max-w-4xl mx-auto bg-gray-50 rounded-xl shadow-md overflow-hidden">
+                <div class="md:flex">
+                    <div class="md:w-1/2 bg-blue-700 text-white p-8">
+                        <h3 class="text-2xl font-bold mb-6">Información de contacto</h3>
+                        
+                        <div class="flex items-start mb-6">
+                            <div class="bg-blue-600 p-3 rounded-full mr-4">
+                                <i class="fas fa-phone-alt text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold">Teléfono / WhatsApp</h4>
+                                <a href="https://wa.me/5356639178" target="_blank" class="text-blue-100 hover:text-white transition">+53 56639178</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start mb-6">
+                            <div class="bg-blue-600 p-3 rounded-full mr-4">
+                                <i class="fas fa-envelope text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold">Correo Electrónico</h4>
+                                <a href="mailto:adguardtchgo@gmail.com" class="text-blue-100 hover:text-white transition">adguardtchgo@gmail.com</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-blue-600 p-3 rounded-full mr-4">
+                                <i class="fas fa-clock text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold">Horario de atención</h4>
+                                <p class="text-blue-100">Lunes a Viernes: 9:00 AM - 6:00 PM</p>
+                                <p class="text-blue-100">Sábados: 10:00 AM - 2:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="md:w-1/2 p-8">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6">Reserva tu servicio</h3>
+                        <p class="text-gray-600 mb-6">Contáctanos directamente por WhatsApp para agendar tu servicio:</p>
+                        <a href="https://wa.me/5356639178" target="_blank" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-full inline-flex items-center transition w-full justify-center">
+                            <i class="fab fa-whatsapp mr-2 text-xl"></i> Reservar por WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/5356639178" target="_blank" class="floating-button bg-green-500 text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl shadow-lg hover:bg-green-600 transition">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Home Floating Button -->
+    <button onclick="scrollToTop()" class="floating-home bg-blue-600 text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl shadow-lg hover:bg-blue-700 transition">
+        <i class="fas fa-home"></i>
+    </button>
+
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <h3 class="text-xl font-bold mb-4">AdGuardTech</h3>
+                <p class="text-blue-300 mb-4">Servicios técnicos de software en Banes</p>
+                <div class="flex justify-center space-x-4 mb-6">
+                    <a href="https://wa.me/5356639178" target="_blank" class="text-white hover:text-green-300 transition">
+                        <i class="fab fa-whatsapp text-2xl"></i>
+                    </a>
+                    <a href="mailto:adguardtchgo@gmail.com" class="text-white hover:text-blue-300 transition">
+                        <i class="fas fa-envelope text-2xl"></i>
+                    </a>
+                </div>
+                <p class="text-blue-300 text-sm">© <span id="year"></span> AdGuardTech. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Make logo clickable to go to top
+        document.querySelector('.logo-link').addEventListener('click', scrollToTop);
+    </script>
+</body>
+</html>
